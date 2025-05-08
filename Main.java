@@ -1,6 +1,7 @@
 public class Main {
     public static void main(String[] args) {
         
+<<<<<<< HEAD
         LinkedList<Integer> list = new LinkedList<>();
 
         Node<Integer> node0 = new Node(0);
@@ -51,5 +52,20 @@ public class Main {
         list.insertAt(8, node8);
         list.print();
         list.getSize();
+=======
+        LinkedList<Integer> list = new LinkedList();
+
+        Node<Integer> node = new Node(1);
+        Node<Integer> node2 = new Node(4);
+        Node<Integer> node3 = new Node(2);
+
+        list.add(node);
+        list.add(node2);
+
+        list.addFirst(node3);
+
+        list.removeNode(node3);
+
+>>>>>>> 06e0c5007186f09951233e79660b2b895d54f77f
     }
 }
