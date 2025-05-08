@@ -2,20 +2,14 @@ public class LinkedList<T> {
     
     Node<T> head;
     Node<T> tail;
-<<<<<<< HEAD
     int length = 0;
 
     public LinkedList() {
-=======
-
-    public LinkedList(){
->>>>>>> 06e0c5007186f09951233e79660b2b895d54f77f
         this.head = null;
         this.tail = null;
     }
 
     public boolean isEmpty() {
-<<<<<<< HEAD
         if (this.head == null) {
             return true;
         } else {
@@ -29,37 +23,11 @@ public class LinkedList<T> {
             this.tail = node;
             length++;
             System.out.println("Adicionei no começo porque é vazio " + this.head.value);
-=======
-        return this.head == null;
-    }
-
-    public void add(Node<T> node) {
-
-        // vazio
-        if (isEmpty()) {
-            this.head = node;
-            this.tail = node;
-            return;
-        }
-
-        // última posição
-        this.tail.next = node;
-        this.tail = node;
-
-        System.out.println(this.tail.val);
-    }
-
-    public void addFirst(Node<T> node) {
-        if (isEmpty()) {
-            this.head = node;
-            this.tail = node;
->>>>>>> 06e0c5007186f09951233e79660b2b895d54f77f
             return;
         }
 
         node.next = this.head;
         this.head = node;
-<<<<<<< HEAD
         length++;
         
         System.out.println("Adicionei no começo da lista " + this.head.value);
@@ -92,21 +60,12 @@ public class LinkedList<T> {
         
         } else if (pos == 1) {
             prepend(node);
-=======
-
-        System.out.println(this.head.val);
-    }
-
-    public void removeNode(Node<T> node) {
-        if(isEmpty()) {
->>>>>>> 06e0c5007186f09951233e79660b2b895d54f77f
             return;
         }
 
         Node<T> curr;
         curr = this.head;
 
-<<<<<<< HEAD
         while (curr != null) {
 
             if (pos == lengthList+1) {
@@ -276,14 +235,4 @@ public class LinkedList<T> {
 
     }
 
-=======
-        for (int i = 0; curr.next != null; i++) {
-            curr = curr.next;
-        }
-
-        curr.next = curr.next.next;
-        System.out.println(curr.val);
-
-    }
->>>>>>> 06e0c5007186f09951233e79660b2b895d54f77f
 }
