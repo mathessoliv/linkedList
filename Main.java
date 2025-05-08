@@ -51,5 +51,9 @@ public class Main {
         list.insertAt(8, node8);
         list.print();
         list.getSize();
+
+        System.out.println();
+        list.clear();
+        list.print();
     }
 }

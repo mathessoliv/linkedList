@@ -53,9 +53,14 @@ public class LinkedList<T> {
 
         int lengthList = 1;
 
+        if (pos < 1 || pos > length+2 || node == null) {
+            return;
+        } 
+
         if (isEmpty()){
             this.head = node;
             this.tail = node;
+            length++;
             return;
         
         } else if (pos == 1) {
@@ -74,28 +79,30 @@ public class LinkedList<T> {
                     curr.next = node;
                     this.tail = node;
                     length++;
+                    return;
 
                 } else {
                     node.next = curr.next;
                     curr.next = node;
                     length++;
-        
+                    return;
                 }
                 
-
             } else {
                 curr = curr.next;
                 lengthList++;
             }
-
-            
         }
-
     }
 
     public void remove(Node<T> value){
+        if (value == null) {
+            return;
+        }
+
         if (isEmpty()) {
             return;
+
         } else if (this.head == value) {
 
             // se o valor a excluir for o único da linkedlist
@@ -110,6 +117,7 @@ public class LinkedList<T> {
             System.out.println("Removi o " + this.head.value + " da likedlist");
             this.head = this.head.next;
             length--;
+            return;
         
         } 
 
@@ -129,17 +137,13 @@ public class LinkedList<T> {
 
                 } else {
                     curr.next = curr.next.next;
-                }
-                
-                return;
-
-            } else if (curr.next != null){
-                curr = curr.next;
-
-            } else {
-                return;
+                    length--;
+                    return;    
+                }           
             }
-            
+
+            curr = curr.next;
+
         }
     }
 
@@ -190,7 +194,7 @@ public class LinkedList<T> {
     }
 
     public void contains(Node<T> node) {
-        if (isEmpty()) {
+        if (isEmpty() || node == null) {
             return;
         }
 
@@ -202,17 +206,23 @@ public class LinkedList<T> {
             if (curr == node) {
                 System.out.println("O nó " + node.value + " está dentro da linkedlist");
                 return;
-            } else if (curr.next == null){
-                System.out.println("O nó " + node.value + " não está dentro da linkedlist");
-            }
-
+            } 
             curr = curr.next;
         }
+
+        System.out.println("O nó " + node.value + " não está dentro da linkedlist");
+        
     }
 
     public int getSize(){
         System.out.println("O tamanho do nó é de: " + length + ".");
         return length;
+    }
+
+    public void clear(){
+        this.head = null;
+        this.tail = null;
+        length = 0;
     }
 
     public void print(){
