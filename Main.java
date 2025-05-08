@@ -22,19 +22,19 @@ public class Main {
         list.prepend(node0);
 
         list.remove(node5);
-        list.print();
+        list.printList();
         System.out.println();
 
         list.append(node5);
-        list.print();
+        list.printList();
         System.out.println();
 
         list.removeFirst();
-        list.print();
+        list.printList();
 
         System.out.println();
         list.removeLast();
-        list.print();
+        list.printList();
 
         System.out.println();
         list.contains(node0);
@@ -43,17 +43,24 @@ public class Main {
         list.append(node7);
 
         System.out.println();
-        list.print();
+        list.printList();
         list.getSize();
         System.out.println();
 
         System.out.println("Insert at: ");
-        list.insertAt(8, node8);
-        list.print();
+        list.insertAt(5, node5);
+        list.printList();
+        list.getSize();
+        System.out.println();
+
+        System.out.println("Remove at:");
+        list.removeAt(7);
+        list.printList();
         list.getSize();
 
         System.out.println();
+        System.out.println("Clear");
         list.clear();
-        list.print();
+        list.printList();
     }
 }
