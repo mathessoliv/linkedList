@@ -8,8 +8,9 @@ Welcome to the **LinkedList** project! This repository contains a custom impleme
 - **Dynamic size**: Automatically adjusts as elements are added or removed.
 - **Core operations**:
     - Add elements (at the beginning, end, or specific position).
-    - Remove elements (by value or position).
+    - Remove elements (by value or beginning, end, or specifc position).
     - Search for elements.
+    - Clear the list.
     - Display the list contents.
 
 ## Getting Started
@@ -38,15 +39,43 @@ Welcome to the **LinkedList** project! This repository contains a custom impleme
 ## Example Usage
 
 ```java
-LinkedList list = new LinkedList();
-Node<Integer> node = new Node(1);
+// Create a new LinkedList
+LinkedList<Integer> list = new LinkedList<>();
+
+// Create some nodes
+Node<Integer> node1 = new Node(1);
 Node<Integer> node2 = new Node(2);
 Node<Integer> node3 = new Node(3);
+Node<Integer> node4 = new Node(4);
 
-list.add(node);
-list.add(node2);
+// Add nodes to the list
+list.append(node1);    // Add at the end
+list.prepend(node2);   // Add at the beginning
+list.insertAt(2, node3); // Insert at specific position
 
-list.addFirst(node3)
+// Check if list is empty
+boolean isEmpty = list.isEmpty(); // Returns false
+
+// Check if list contains a node
+boolean contains = list.contains(node1); // Returns true
+
+// Get list size
+int size = list.getSize(); // Returns 3
+
+// Print the list
+list.printList(); // Output: 2 -> 3 -> 1 -> FIM
+
+// Remove nodes
+list.remove(node3);     // Remove specific node
+list.removeFirst();     // Remove first node
+list.removeLast();      // Remove last node
+list.removeAt(1);       // Remove node at specific index
+
+// Clear the list
+list.clear(); // Removes all nodes
+
+// After clearing
+list.printList(); // Output: (empty list)
 ```
 
 ## Project Structure
