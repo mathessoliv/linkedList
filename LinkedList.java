@@ -9,6 +9,7 @@ public class LinkedList<T> {
         this.tail = null;
     }
 
+    // Many times, we'll verify if the head is null. If yes, will return true, else, return false
     public boolean isEmpty() {
         if (this.head == null) {
             return true;
@@ -17,7 +18,10 @@ public class LinkedList<T> {
         }
     }
 
+    // Method to add the node in the first position
     public void prepend(Node<T> node) {
+
+        // This block verify if the head is null. If isEmpty return true, then adds in the first position
         if(isEmpty()) {
             this.head = node;
             this.tail = node;
@@ -25,12 +29,16 @@ public class LinkedList<T> {
             return;
         }
 
+        // Else, do the logic to add in the first position
         node.next = this.head;
         this.head = node;
         length++;
     }
 
+    // Method to append the node in the last position of linked list
     public void append(Node<T> node) {
+
+        // Same system verify
         if(isEmpty()) {
             this.head = node;
             this.tail = node;
@@ -43,21 +51,25 @@ public class LinkedList<T> {
         length++;
     }
 
-    public void insertAt(int pos, Node<T> node) {
+    // Method for add the node in the specify position using the giving index 
+    public void insertAt(int index, Node<T> node) {
 
         int lengthList = 1;
 
-        if (pos < 1 || pos > length+2 || node == null) {
+        // If some condition is true, the node will can't to add in the list, because or he's below, above or node is null.
+        if (index < 1 || index > length+2 || node == null) {
             return;
         } 
 
+        // Same logic
         if (isEmpty()){
             this.head = node;
             this.tail = node;
             length++;
             return;
         
-        } else if (pos == 1) {
+        // If index is one, so it'll add in the first index
+        } else if (index == 1) {
             prepend(node);
             return;
         }
@@ -65,16 +77,18 @@ public class LinkedList<T> {
         Node<T> curr;
         curr = this.head;
 
+        // This loop system will be used throughout the code to iterate through the linked list
         while (curr != null) {
 
-            if (pos == lengthList+1) {
+            if (index == lengthList+1) {
 
+                // changes the tail
                 if (curr.next == null) {
                     curr.next = node;
                     this.tail = node;
                     length++;
                     return;
-
+                
                 } else {
                     node.next = curr.next;
                     curr.next = node;
@@ -89,6 +103,7 @@ public class LinkedList<T> {
         }
     }
 
+    // Method to remove the first value in the list
     public void remove(Node<T> value){
         if (value == null) {
             return;
@@ -99,7 +114,7 @@ public class LinkedList<T> {
 
         } else if (this.head == value) {
 
-            // se o valor a excluir for o único da linkedlist
+            // If the value to exclude is the unique in the list
             if (this.head.next == null) {
                 this.head = null;
                 this.tail = null;
@@ -107,7 +122,7 @@ public class LinkedList<T> {
                 return;
             }
 
-            // se o valor a excluir for o head
+            // If the value to exclude is the head
             this.head = this.head.next;
             length--;
             return;
@@ -118,7 +133,8 @@ public class LinkedList<T> {
         curr = this.head;
 
         while (curr != null) {
-          
+            
+            // Logic to remove
             if (curr.next == value) {
                 
                 if (curr.next.next == null) {
@@ -139,10 +155,12 @@ public class LinkedList<T> {
         }
     }
 
+    // Method to remove first item from list
     public void removeFirst(){
         if (isEmpty()) {
             return;
 
+        // First node is unique in list
         } else if (this.head.next == null) {
             this.head = null;
             this.tail = null;
@@ -155,6 +173,7 @@ public class LinkedList<T> {
         return;
     }
 
+    // Method to remove the tail of the list
     public void removeLast(){
         if (isEmpty()) {
             return;
@@ -181,12 +200,14 @@ public class LinkedList<T> {
         }
     }
 
-    public void removeAt(int pos){
-        if (pos > length || pos < 1 || isEmpty()) {
+    // Method to remove a value using an index specific
+    public void removeAt(int index){
+        if (index > length || index < 1 || isEmpty()) {
             return;
         }
 
-        if (pos == 1) {
+        // If index is the first, he's the node, then exists some differences between other logic to remove
+        if (index == 1) {
 
             if (this.head.next == null) {
                 this.head = null;
@@ -208,7 +229,8 @@ public class LinkedList<T> {
 
         while (curr != null) {
 
-            if (pos == lengthList+1){
+            // The main logic
+            if (index == lengthList+1){
 
                 if (curr.next.next == null) {
                     curr.next = null;
@@ -229,9 +251,10 @@ public class LinkedList<T> {
         }
     }
 
-    public void contains(Node<T> node) {
+    // Method to know if the value exists in the linked list
+    public boolean contains(Node<T> node) {
         if (isEmpty() || node == null) {
-            return;
+            return false;
         }
 
         Node<T> curr;
@@ -240,12 +263,15 @@ public class LinkedList<T> {
         while (curr != null) {
 
             if (curr == node) {
-                return;
+                return true;
             } 
             curr = curr.next;
         }
+
+        return false;
     }
 
+    // Method to get a size of the linked list
     public int getSize(){
         System.out.println("O tamanho do nó é de: " + length + ".");
         return length;
@@ -257,6 +283,7 @@ public class LinkedList<T> {
         length = 0;
     }
 
+    // Method to print the linked list (used for know how she's)
     public void printList(){
         
         Node<T> curr;
