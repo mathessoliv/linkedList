@@ -1,17 +1,18 @@
 # LinkedList Implementation in Java
 
-Welcome to the **LinkedList** project! This repository contains a custom implementation of a Linked List in Java, showcasing fundamental data structure concepts.
+Welcome to the **LinkedList** project! This repository contains a custom implementation of both singly and doubly linked lists in Java, showcasing fundamental data structure concepts.
 
 ## Features
 
-- **Node-based structure**: Each element (node) contains data and a reference to the next node.
+- **Node-based structure**: Each element (node) contains data and references to the next (and previous, for doubly linked) nodes.
 - **Dynamic size**: Automatically adjusts as elements are added or removed.
 - **Core operations**:
     - Add elements (at the beginning, end, or specific position).
     - Remove elements (by value or beginning, end, or specifc position).
     - Search for elements.
+    - Display the list contents (forward and reverse for doubly linked).
     - Clear the list.
-    - Display the list contents.
+    - Get the size of the list.
 
 ## Getting Started
 
@@ -23,69 +24,80 @@ Welcome to the **LinkedList** project! This repository contains a custom impleme
 ### Running the Code
 
 1. Clone this repository:
-     ```bash
-     git clone https://github.com/mathessoliv/linkedList.git
-     ```
+    ```bash
+    git clone https://github.com/mathessoliv/linkedList.git
+    ```
 2. Navigate to the project directory:
-     ```bash
-     cd LinkedList
-     ```
-3. Compile and run the Java program:
-     ```bash
-     javac LinkedList.java
-     java LinkedList
-     ```
+    ```bash
+    cd linkedList
+    ```
+
+#### For Doubly Linked List
+
+```bash
+cd doubleLinkedList
+javac *.java
+java doubleLinkedList.Main
+```
+
+#### For Singly Linked List
+
+```bash
+cd linkedList
+javac *.java
+java linkedList.Main
+```
 
 ## Example Usage
 
 ```java
-// Create a new LinkedList
-LinkedList<Integer> list = new LinkedList<>();
+DoubleLinkedList<Integer> list = new DoubleLinkedList<>();
 
-// Create some nodes
-Node<Integer> node1 = new Node(1);
-Node<Integer> node2 = new Node(2);
-Node<Integer> node3 = new Node(3);
-Node<Integer> node4 = new Node(4);
+Node<Integer> node0 = new Node<>(0);
+Node<Integer> node1 = new Node<>(1);
+Node<Integer> node2 = new Node<>(2);
+Node<Integer> node3 = new Node<>(3);
 
-// Add nodes to the list
-list.append(node1);    // Add at the end
-list.prepend(node2);   // Add at the beginning
-list.insertAt(2, node3); // Insert at specific position
-
-// Check if list is empty
-boolean isEmpty = list.isEmpty(); // Returns false
-
-// Check if list contains a node
-boolean contains = list.contains(node1); // Returns true
-
-// Get list size
-int size = list.getSize(); // Returns 3
-
-// Print the list
-list.printList(); // Output: 2 -> 3 -> 1 -> FIM
+// Add nodes
+list.append(node1);           // Add at end
+list.prepend(node0);          // Add at beginning
+list.insertAt(3, node2);      // Add at position 3 (1-based index)
+list.append(node3);
 
 // Remove nodes
-list.remove(node3);     // Remove specific node
-list.removeFirst();     // Remove first node
-list.removeLast();      // Remove last node
-list.removeAt(1);       // Remove node at specific index
+list.removeFirst();           // Remove from beginning
+list.removeLast();            // Remove from end
+list.remove(node2);           // Remove by node reference
+list.removeAt(1);             // Remove by position
+
+// Check if a node exists
+boolean exists = list.contains(node1);
+
+// Get size
+int size = list.getSize();
+
+// Print list forward and reverse
+list.printList();
+list.printReverse();
 
 // Clear the list
-list.clear(); // Removes all nodes
-
-// After clearing
-list.printList(); // Output: (empty list)
+list.clear();
 ```
 
 ## Project Structure
 
 ```
 /LinkedList
-├── LinkedList.java   # Core implementation
-├── Node.java         # Node structure
-├── Main.java         # Main 
-└── README.md         # Project documentation
+├── doubleLinkedList/
+│   ├── DoubleLinkedList.java   # Doubly linked list implementation
+│   ├── Node.java               # Node structure for doubly linked list
+│   └── Main.java               # Example usage for doubly linked list
+├── linkedList/
+│   ├── LinkedList.java         # Singly linked list implementation
+│   ├── Node.java               # Node structure for singly linked list
+│   └── Main.java               # Example usage for singly linked list
+├── .gitignore
+└── README.md                   # Project documentation
 ```
 
 ## Contributing

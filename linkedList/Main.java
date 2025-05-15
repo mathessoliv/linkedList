@@ -1,3 +1,4 @@
+package linkedList;
 public class Main {
     public static void main(String[] args) {
         
@@ -48,7 +49,7 @@ public class Main {
         System.out.println();
 
         System.out.println("Insert at: ");
-        list.insertAt(5, node5);
+        list.insertAt(8, node8);
         list.printList();
         list.getSize();
         System.out.println();
