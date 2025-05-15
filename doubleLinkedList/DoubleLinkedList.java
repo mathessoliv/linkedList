@@ -1,10 +1,12 @@
-public class LinkedList<T> {
+package doubleLinkedList;
+
+public class DoubleLinkedList<T> {
     
     Node<T> head;
     Node<T> tail;
     int length = 0;
 
-    public LinkedList() {
+    public DoubleLinkedList() {
         this.head = null;
         this.tail = null;
     }
@@ -31,7 +33,11 @@ public class LinkedList<T> {
 
         // Else, do the logic to add in the first position
         node.next = this.head;
+        node.prev = null;
+
+        this.head.prev = node;
         this.head = node;
+
         length++;
     }
 
@@ -47,7 +53,11 @@ public class LinkedList<T> {
         }
 
         this.tail.next = node;
+        node.prev = this.tail;
+
+        node.next = null;
         this.tail = node;
+
         length++;
     }
 
@@ -84,13 +94,13 @@ public class LinkedList<T> {
 
                 // changes the tail
                 if (curr.next == null) {
-                    curr.next = node;
-                    this.tail = node;
-                    length++;
-                    return;
+                    append(node);
                 
                 } else {
                     node.next = curr.next;
+                    node.prev = curr;
+                    
+                    curr.next.prev = node;                 
                     curr.next = node;
                     length++;
                     return;
@@ -100,58 +110,6 @@ public class LinkedList<T> {
                 curr = curr.next;
                 lengthList++;
             }
-        }
-    }
-
-    // Method to remove the first value in the list
-    public void remove(Node<T> value){
-        if (value == null) {
-            return;
-        }
-
-        if (isEmpty()) {
-            return;
-
-        } else if (this.head == value) {
-
-            // If the value to exclude is the unique in the list
-            if (this.head.next == null) {
-                this.head = null;
-                this.tail = null;
-                length--;
-                return;
-            }
-
-            // If the value to exclude is the head
-            this.head = this.head.next;
-            length--;
-            return;
-        
-        } 
-
-        Node<T> curr;
-        curr = this.head;
-
-        while (curr != null) {
-            
-            // Logic to remove
-            if (curr.next == value) {
-                
-                if (curr.next.next == null) {
-                    curr.next = null;
-                    this.tail = curr;
-                    length--;
-                    return;
-
-                } else {
-                    curr.next = curr.next.next;
-                    length--;
-                    return;    
-                }           
-            }
-
-            curr = curr.next;
-
         }
     }
 
@@ -169,6 +127,7 @@ public class LinkedList<T> {
         } 
         
         this.head = this.head.next;
+        this.head.prev = null;
         length--;
         return;
     }
@@ -185,18 +144,48 @@ public class LinkedList<T> {
             return;
         }
 
+        this.tail = this.tail.prev; 
+        this.tail.next = null;
+        length--;
+        return;
+    }
+
+    // Method to remove the first value in the list
+    public void remove(Node<T> node){
+        if (node == null) {
+            return;
+        }
+
+        if (isEmpty()) {
+            return;
+
+        } else if (this.head == node) {
+            removeFirst();
+            return;
+        } 
+
         Node<T> curr;
         curr = this.head;
 
         while (curr != null) {
             
-            if (curr.next == this.tail) {
-                curr.next = null;
-                this.tail = curr;
-                length--;
+            // Logic to remove
+            if (curr == node) {
+                
+                if (curr.next == null) {
+                    removeLast();
+                    return;
+
+                } else {
+                    curr.prev.next = curr.next;
+                    curr.next.prev = curr.prev;
+                    length--;
+                    return;
+                }           
             }
 
             curr = curr.next;
+
         }
     }
 
@@ -216,8 +205,9 @@ public class LinkedList<T> {
                 return;
             
             } else {
-                length--;
                 this.head = this.head.next;
+                this.head.prev = null;
+                length--;
                 return;
             }
         }
@@ -232,14 +222,12 @@ public class LinkedList<T> {
             // The main logic
             if (index == lengthList+1){
 
-                if (curr.next.next == null) {
-                    curr.next = null;
-                    this.tail = curr;
-                    length--;
-                    return;
+                if (curr.next == null) {
+                    removeLast();
                 
                 } else {
-                    curr.next = curr.next.next;
+                    curr.prev.next = curr.next;
+                    curr.next.prev = curr.prev;
                     length--;
                     return;
                 }
@@ -302,6 +290,28 @@ public class LinkedList<T> {
             
         }
 
+    }
+
+    public void printReverse() {
+        Node<T> curr;
+        curr = this.tail;
+
+        System.out.print("FIM -> ");
+
+         
+
+        while (curr != null) {
+            System.out.print(curr.value);
+
+            if (curr.prev != null) {
+                System.out.print(" -> ");
+            } else {
+                System.out.println("");
+            }
+                        
+            curr = curr.prev;
+            
+        }
     }
 
 }

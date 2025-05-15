@@ -1,7 +1,9 @@
+package doubleLinkedList;
+
 public class Main {
     public static void main(String[] args) {
         
-        LinkedList<Integer> list = new LinkedList<>();
+        DoubleLinkedList<Integer> list = new DoubleLinkedList<>();
 
         Node<Integer> node0 = new Node(0);
         Node<Integer> node1 = new Node(1);
@@ -48,7 +50,7 @@ public class Main {
         System.out.println();
 
         System.out.println("Insert at: ");
-        list.insertAt(5, node5);
+        list.insertAt(8, node8);
         list.printList();
         list.getSize();
         System.out.println();
@@ -57,6 +59,10 @@ public class Main {
         list.removeAt(7);
         list.printList();
         list.getSize();
+
+        System.out.println();
+        list.printList();
+        list.printReverse();
 
         System.out.println();
         System.out.println("Clear");
